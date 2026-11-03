@@ -1,0 +1,12 @@
+Haixuan DiffBench
+Copyright 2026 Hangzhou Haixuan Yunzhi Technology Co., Ltd. (杭州海轩云智科技有限公司)
+
+This product includes software developed by Hangzhou Haixuan Yunzhi Technology Co., Ltd.
+Licensed under the Apache License, Version 2.0.
+
+Third-party engines (MuJoCo, MJX, MuJoCo-Warp, Newton, Warp, Brax, Drake, JAX) are NOT
+distributed with this repository. They are separate projects under their own licenses and
+trademarks; see TRADEMARKS.md. The Nexus engine source code is not part of this repository.
+
+Specification text, documentation, data and result bundles (README*, docs/, site/) are licensed under CC-BY-4.0 (see LICENSE-DOCS).
+Security / conduct / general contact: haiping-liang@qq.com

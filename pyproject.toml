@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haixuan-diffbench"
+version = "0.1.0"
+description = "Open, reproducible accuracy benchmark for rigid-body physics engines (analytic-truth scenarios, public scorer, hidden set, signed result bundles)."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = ["numpy"]
+classifiers = ["License :: OSI Approved :: Apache Software License", "Topic :: Scientific/Engineering :: Physics", "Programming Language :: Python :: 3"]
+
+[project.optional-dependencies]
+mujoco = ["mujoco"]
+mjx = ["mujoco-mjx", "jax"]
+brax = ["brax", "jax"]
+drake = ["drake"]
+newton = ["newton", "warp-lang"]
+mujoco-warp = ["mujoco-warp", "warp-lang"]
+
+[tool.setuptools]
+packages = ["diffbench", "diffbench.adapters"]

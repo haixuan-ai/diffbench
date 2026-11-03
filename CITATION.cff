@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use DiffBench results or code, please cite it as below."
+title: "Haixuan DiffBench: an open, reproducible accuracy benchmark for rigid-body physics engines"
+version: 0.1.0
+license: Apache-2.0  # code; spec text and docs are CC-BY-4.0 (LICENSE-DOCS)
+authors:
+  - name: "Haixuan DiffBench contributors"
+  - name: "Haixuan"
+date-released: "2026-11-03"
+repository-code: "https://github.com/haixuan-ai/diffbench"
+keywords: [physics simulation, benchmark, rigid body, differentiable simulation, reproducibility]
