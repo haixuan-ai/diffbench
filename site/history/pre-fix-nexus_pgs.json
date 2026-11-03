@@ -1,0 +1,405 @@
+{
+ "track": "accuracy",
+ "diffbench_version": "0.1.0",
+ "spec_version": "0.1.0",
+ "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+ "date_utc": "2026-10-23T16:47:05.114125Z",
+ "host": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.30GHz",
+  "cores": 4,
+  "os": "Linux-6.18.58-x86_64-with-glibc2.40",
+  "python": "3.11.14",
+  "gpu": "none (CPU track)"
+ },
+ "engine_versions": {
+  "nexus_pgs": "nexus (local build, entrant=nexus_pgs)"
+ },
+ "results": [
+  {
+   "engine": "nexus_pgs",
+   "scenario": "free_fall",
+   "dt": 0.016666666666666666,
+   "wall_s": 1.37,
+   "metrics": {
+    "pos_err_max_m": 0.0817500000000008,
+    "vel_err_max_mps": 8.881784197001252e-15
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 4241.945888041576,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.016666666666666666,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "free_fall",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.14,
+   "metrics": {
+    "pos_err_max_m": 0.02043749999999739,
+    "vel_err_max_mps": 2.1316282072803006e-14
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 7654.870957055823,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "free_fall",
+   "dt": 0.001,
+   "wall_s": 1.07,
+   "metrics": {
+    "pos_err_max_m": 0.004904999999970558,
+    "vel_err_max_mps": 9.059419880941277e-14
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 9950.467270460558,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.001,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "projectile_spin",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.13,
+   "metrics": {
+    "pos_err_max_m": 0.020437500000008768,
+    "vel_err_max_mps": 2.042810365310288e-14,
+    "angvel_err_max_rps": 0.0
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 6446.298865563927,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "torque_free_asym",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.32,
+   "metrics": {
+    "orient_err_deg_max": 3.417515428642324,
+    "energy_drift_rel": 0.03346648904886826,
+    "angmom_drift_rel": 0.019080964131807036,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": false,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 8824.830263122538,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "coulomb_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.97,
+   "metrics": {
+    "stop_dist_rel_err": 0.01016416664368989,
+    "residual_speed_mps": 5.5804678681545414e-18,
+    "z_err_max_m": 2.2958472325473878e-06
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 3237.0447836648864,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "incline_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.97,
+   "metrics": {
+    "slope_pos_rel_err": 0.004280318964847259,
+    "z_err_max_m": 2.0366117234743575e-06
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 1540.2021248320534,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     3.3552176060248105,
+     -9.218384609909762,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "box_rest",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.85,
+   "metrics": {
+    "z_err_max_m": 2.1626802118590582e-06,
+    "lateral_drift_m": 2.1068464270295615e-18,
+    "speed_max_mps": 7.473409288786779e-18
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 4028.6644511530117,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "box_drop",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.22,
+   "metrics": {
+    "final_z_err_m": 1.5758999485915304e-07,
+    "final_speed_mps": 4.443058607500382e-18,
+    "max_rebound_m": 0.001665624999999754
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 2438.513318494245,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "sphere_slide_to_roll",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.76,
+   "metrics": {
+    "final_v_rel_err": 1.7097434579227411e-15,
+    "roll_resid_rel": 1.554312234475219e-16,
+    "x_end_rel_err": 0.0008132353111244739
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 9701.439414692592,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "stack5",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.25,
+   "metrics": {
+    "top_z_err_m": 0.00028612452083154327,
+    "lateral_drift_m": 2.2009656818902961e-16,
+    "speed_max_mps": 1.5903485410841134e-06
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 1825.4079930425078,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "pendulum_hinge",
+   "dt": 0.016666666666666666,
+   "wall_s": 0.96,
+   "metrics": {
+    "com_pos_err_max_m": 0.022017078343816335,
+    "energy_drift_rel": 0.028597897331136768
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": false
+   },
+   "steps_per_sec": 4668.352581685695,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.016666666666666666,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ],
+    "jointGyroMode": "all"
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "pendulum_hinge",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.17,
+   "metrics": {
+    "com_pos_err_max_m": 0.005613750584601578,
+    "energy_drift_rel": 0.007012452369621702
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 7478.7985409862,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ],
+    "jointGyroMode": "all"
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "pendulum_hinge",
+   "dt": 0.001,
+   "wall_s": 1.21,
+   "metrics": {
+    "com_pos_err_max_m": 0.0013525892291226236,
+    "energy_drift_rel": 0.001681216813445707
+   },
+   "pass": {
+    "com_pos_err_max_m": true,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 16418.074309944477,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.001,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ],
+    "jointGyroMode": "all"
+   }
+  }
+ ],
+ "convergence": [
+  {
+   "engine": "nexus_pgs",
+   "scenario": "free_fall",
+   "metric": "pos_err_max_m",
+   "order": 1.0000000000021467
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "pendulum_hinge",
+   "metric": "com_pos_err_max_m",
+   "order": 0.9916347013721745
+  }
+ ],
+ "signature": {
+  "sha256": "47f7e8cef7b6072f5ab233177b0556784f22064f635e7eff8fec8566c97a933f"
+ }
+}

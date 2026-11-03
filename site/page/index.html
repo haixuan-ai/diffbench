@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Haixuan DiffBench — 刚体物理引擎开放精度基准 / Open accuracy benchmark for rigid-body physics engines</title>
+<meta name="description" content="DiffBench: reproducible accuracy benchmark for rigid-body physics engines against closed-form truth. Public scorer, signed result bundles, no composite score, no ranking.">
+<style>
+:root{--paper:#f6f5f1;--card:#fff;--ink:#14202b;--mute:#5d6b78;--line:#d9d6cc;--navy:#0f2a43;--teal:#0b7a75;--ok:#1f7a4d;--okbg:#e5f3ea;--bad:#a8322a;--badbg:#f9e7e4;--warn:#9a5b06;--warnbg:#fbf1dc;--na:#8a949e;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font:15px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+code,.mono{font-family:var(--mono)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(246,245,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:52px}
+.brand{font-weight:700;letter-spacing:.2px;color:var(--navy);white-space:nowrap}
+.brand b{color:var(--teal)}.brand{display:flex;align-items:center;gap:10px}.brand .logo{height:30px;width:auto;display:block}
+nav .links{display:flex;gap:18px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+nav .links a{color:var(--mute);font-size:13.5px;white-space:nowrap}nav .links a:hover{color:var(--ink);text-decoration:none}
+.lang{border:1px solid var(--line);background:var(--card);border-radius:6px;display:flex;overflow:hidden}
+.lang button{border:0;background:none;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer;color:var(--mute)}
+.lang button.on{background:var(--navy);color:#fff}
+/* hero */
+.hero{background:var(--navy);color:#e9eef3;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(180deg,#000 30%,transparent)}
+.hero .wrap{position:relative;padding-top:56px;padding-bottom:48px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:#7fd1cb}
+h1{font-size:clamp(28px,4.4vw,46px);line-height:1.15;margin:12px 0 14px;font-weight:700;letter-spacing:-.5px;max-width:860px}
+.hero p.lead{font-size:17px;max-width:760px;color:#c6d2dd;margin:0 0 24px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:7px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer}
+.btn.p{background:#7fd1cb;color:#08202f}.btn.p:hover{background:#9adfda;text-decoration:none}
+.btn.s{border-color:rgba(255,255,255,.3);color:#e9eef3}.btn.s:hover{background:rgba(255,255,255,.08);text-decoration:none}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:10px;overflow:hidden}
+.facts div{background:var(--navy);padding:14px 16px}
+.facts .k{font:11px var(--mono);letter-spacing:1px;text-transform:uppercase;color:#8fa6b8}
+.facts .v{font-size:19px;font-weight:650;margin-top:2px}
+.facts .v small{font-size:12px;font-weight:400;color:#9db1c2;font-family:var(--mono)}
+/* notice */
+.notice{margin:28px 0 0;border:1px solid #e3cf9a;background:var(--warnbg);border-radius:10px;padding:16px 20px;color:#4d3205}
+.notice h3{margin:0 0 6px;font-size:14.5px;color:var(--warn)}
+.notice ul{margin:6px 0 0;padding-left:20px}.notice li{margin:3px 0}
+/* sections */
+section{padding:52px 0 8px}
+h2{font-size:26px;margin:0 0 6px;letter-spacing:-.3px;color:var(--navy)}
+h2 .n{font:600 13px var(--mono);color:var(--teal);margin-right:10px;letter-spacing:1px}
+.sub{color:var(--mute);margin:0 0 20px;max-width:820px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.pad{padding:20px 22px}
+/* matrix */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+.mx th,.mx td{padding:0;border-bottom:1px solid var(--line);text-align:center}
+.mx thead th{font:600 12px/1.35 var(--sans);color:var(--mute);padding:10px 6px 8px;vertical-align:bottom;min-width:92px;max-width:120px;background:#fbfaf7}
+.mx thead th.c{cursor:pointer}.mx thead th.c:hover{color:var(--teal)}
+.mx thead th span{display:block;margin:0 auto;white-space:normal;word-break:break-word}
+.mx tbody th{text-align:left;padding:10px 16px;font-weight:600;min-width:210px;position:sticky;left:0;background:var(--card);z-index:1}
+.mx tbody th small{display:block;font:400 11px var(--mono);color:var(--mute);margin-top:1px}
+.tag{display:inline-block;font:600 10px var(--mono);letter-spacing:.6px;text-transform:uppercase;padding:1px 6px;border-radius:4px;background:var(--warnbg);color:var(--warn);border:1px solid #e3cf9a;margin-left:6px;vertical-align:1px}
+.cell{display:block;height:38px;line-height:38px;font:700 15px var(--mono);cursor:pointer;border-left:1px solid #fff}
+.cell.ok{background:var(--okbg);color:var(--ok)}.cell.bad{background:var(--badbg);color:var(--bad)}.cell.na{background:#eee;color:var(--na)}
+.cell:hover{outline:2px solid var(--navy);outline-offset:-2px}
+.cnt{font:12px var(--mono);color:var(--mute);padding:0 14px;white-space:nowrap}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin:12px 2px 0}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+/* scenario explorer */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.sc-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.sc-h h3{margin:0;font-size:19px;color:var(--navy)}
+.sc-h code{font-size:12.5px;color:var(--mute)}
+.dtsel{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
+.dtsel button{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:3px 10px;font:12.5px var(--mono);cursor:pointer}
+.dtsel button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.dt th,.dt td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:right;font-size:13.5px;vertical-align:middle}
+.dt th:first-child,.dt td:first-child{text-align:left}
+.dt thead th{font-size:12px;color:var(--mute);font-weight:600;background:#fbfaf7;vertical-align:bottom;line-height:1.3}
+.dt thead th small{display:block;font:400 11px var(--mono)}
+.dt tr.tolrow td{background:var(--warnbg);font:12.5px var(--mono);color:#4d3205}
+.dt tr.tolrow td:first-child{font:600 12px var(--sans)}
+.val{font:13px var(--mono);white-space:nowrap}
+.val.ok{color:var(--ok)}.val.bad{color:var(--bad);font-weight:700}
+.gauge{position:relative;height:6px;border-radius:3px;background:#ece9df;margin-top:5px;min-width:96px}
+.gauge u{position:absolute;left:0;top:0;bottom:0;border-radius:3px;text-decoration:none}
+.gauge u.ok{background:#4aa578}.gauge u.bad{background:#cf5a50}
+.gauge s{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy);left:66.7%}
+.note{font-size:12.5px;color:var(--mute);margin-top:12px}
+.sps{font:12.5px var(--mono);color:var(--mute)}
+/* generic tables */
+.tb th,.tb td{padding:9px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:13.5px;vertical-align:top}
+.tb thead th{background:#fbfaf7;color:var(--mute);font-size:12px;font-weight:600}
+.tb td.m{font-family:var(--mono);font-size:12.5px;word-break:break-all}
+/* verify */
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:860px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 18px 42px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font:600 13px/28px var(--mono);text-align:center}
+.steps li:after{content:"";position:absolute;left:13px;top:32px;bottom:2px;width:2px;background:var(--line)}
+.steps li:last-child:after{display:none}
+.steps b{display:block;margin-bottom:4px}
+pre{margin:6px 0 0;background:#10202e;color:#d9e6f0;border-radius:8px;padding:12px 14px;overflow-x:auto;font:12.5px/1.6 var(--mono);position:relative}
+pre button{position:absolute;right:8px;top:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#cfe0ee;border-radius:5px;font:11px var(--sans);padding:2px 8px;cursor:pointer}
+ul.clean{margin:0;padding-left:20px}ul.clean li{margin:6px 0}
+.lim li b{color:var(--navy)}
+footer{margin-top:56px;background:var(--navy);color:#b8c6d3;padding:34px 0 44px;font-size:13px}
+footer a{color:#7fd1cb}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
+@media(max-width:760px){footer .cols{grid-template-columns:1fr}}
+footer h4{margin:0 0 8px;color:#fff;font-size:13px}
+footer p{margin:0 0 8px}
+.hash{font:11.5px var(--mono);color:#8fa6b8;word-break:break-all}
+.loading{padding:40px;text-align:center;color:var(--mute)}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="brand"><img src="logo.png" alt="Haixuan 海轩科技" class="logo"><b>DiffBench</b></div>
+  <div class="links">
+    <a href="#overview" data-i="nav_overview"></a><a href="#scenarios" data-i="nav_scenarios"></a><a href="#convergence" data-i="nav_conv"></a><a href="#entrants" data-i="nav_entrants"></a><a href="#verify" data-i="nav_verify"></a><a href="#limits" data-i="nav_limits"></a><a href="#about" data-i="nav_about"></a>
+  </div>
+  <div class="lang"><button data-l="zh">中文</button><button data-l="en">EN</button></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow" data-i="eyebrow"></div>
+  <h1 data-i="title"></h1>
+  <p class="lead" data-i="lead"></p>
+  <div class="cta">
+    <a class="btn p" href="https://github.com/haixuan-ai/diffbench" data-i="cta_repo"></a>
+    <a class="btn s" href="#overview" data-i="cta_results"></a>
+    <a class="btn s" href="#verify" data-i="cta_verify"></a>
+  </div>
+  <div class="facts" id="facts"></div>
+</div></header>
+
+<main class="wrap">
+  <div class="notice" id="disclosure"></div>
+
+  <section id="overview">
+    <h2><span class="n">01</span><span data-i="ov_h"></span></h2>
+    <p class="sub" data-i="ov_sub"></p>
+    <div class="card scroll"><table class="mx" id="matrix"><tbody><tr><td class="loading">…</td></tr></tbody></table></div>
+    <div class="legend">
+      <span><i style="background:var(--okbg);border:1px solid #b9dcc6"></i><span data-i="lg_ok"></span></span>
+      <span><i style="background:var(--badbg);border:1px solid #efc4be"></i><span data-i="lg_bad"></span></span>
+      <span><i style="background:var(--warnbg);border:1px solid #e3cf9a"></i><span data-i="lg_org"></span></span>
+    </div>
+    <p class="note" data-i="ov_note"></p>
+  </section>
+
+  <section id="scenarios">
+    <h2><span class="n">02</span><span data-i="sc_h"></span></h2>
+    <p class="sub" data-i="sc_sub"></p>
+    <div class="tabs" id="tabs"></div>
+    <div class="card pad" id="scpanel"></div>
+  </section>
+
+  <section id="convergence">
+    <h2><span class="n">03</span><span data-i="cv_h"></span></h2>
+    <p class="sub" data-i="cv_sub"></p>
+    <div class="card scroll"><table class="tb" id="conv"></table></div>
+  </section>
+
+  <section id="entrants">
+    <h2><span class="n">04</span><span data-i="en_h"></span></h2>
+    <p class="sub" data-i="en_sub"></p>
+    <div class="card scroll"><table class="tb" id="entr"></table></div>
+    <p class="note" id="hidden"></p>
+  </section>
+
+  <section id="verify">
+    <h2><span class="n">05</span><span data-i="vf_h"></span></h2>
+    <p class="sub" data-i="vf_sub"></p>
+    <div class="grid2">
+      <div class="card pad">
+        <ol class="steps">
+          <li><b data-i="vf1"></b><pre data-copy>git clone https://github.com/haixuan-ai/diffbench && cd diffbench
+pip install -e . mujoco</pre></li>
+          <li><b data-i="vf2"></b><pre data-copy>python -c "from diffbench import spec; print(spec.spec_hash())"
+# <span id="specsha"></span></pre></li>
+          <li><b data-i="vf3"></b><pre data-copy>python -m diffbench.runner --engines mujoco --out results/mine --raw</pre></li>
+          <li><b data-i="vf4"></b><pre data-copy>python -m diffbench.verify site/bundles/&lt;id&gt;.json --rescore site/raw/&lt;id&gt;</pre></li>
+        </ol>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 8px;color:var(--navy)" data-i="api_h"></h3>
+        <p style="margin:0 0 6px" data-i="api_p"></p>
+        <pre data-copy>export DIFFBENCH_NEXUS_URL=https://www.openaethos.com
+python -m diffbench.runner --engines nexus_pgs --nexus http --raw --out results/nexus_pgs
+python -m diffbench.attest &lt;raw-file&gt; --pubkey &lt;hex&gt;</pre>
+        <ul class="clean" style="margin-top:12px;font-size:13.5px">
+          <li><span data-i="api_info"></span> <a href="/api/public/diffbench/info"><code>/api/public/diffbench/info</code></a></li>
+          <li><span data-i="api_key"></span> <code id="keyid">ed25519:d2081026064d4cd3</code></li>
+          <li data-i="api_lim"></li>
+          <li data-i="api_sla"></li>
+          <li><a href="KEYS.md" data-i="api_keys"></a> · <a href="PROD_VERIFICATION.md" data-i="api_prod"></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits">
+    <h2><span class="n">06</span><span data-i="lm_h"></span></h2>
+    <p class="sub" data-i="lm_sub"></p>
+    <div class="card pad"><ul class="clean lim" id="limlist"></ul></div>
+  </section>
+
+  <section id="about">
+    <h2><span class="n">07</span><span data-i="ab_h"></span></h2>
+    <div class="grid2">
+      <div class="card pad"><h3 style="margin:0 0 8px;color:var(--navy)" data-i="dl_h"></h3>
+        <ul class="clean" style="font-size:13.5px">
+          <li><a href="report.en.md">report.en.md</a> / <a href="report.md">report.md</a> — <span data-i="dl_report"></span></li>
+          <li><a href="leaderboard.json">leaderboard.json</a> — <span data-i="dl_lb"></span></li>
+          <li><a href="data.json">data.json</a> — <span data-i="dl_data"></span></li>
+          <li><a href="history/README.txt">history/</a> — <span data-i="dl_hist"></span></li>
+        </ul></div>
+      <div class="card pad"><h3 style="margin:0 0 8px;color:var(--navy)" data-i="cite_h"></h3>
+        <p style="margin:0 0 6px;font-size:13.5px" data-i="cite_p"></p>
+        <pre data-copy>Haixuan DiffBench contributors (2026). Haixuan DiffBench v0.1:
+an open, reproducible accuracy benchmark for rigid-body physics engines.
+https://github.com/haixuan-ai/diffbench</pre></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><div class="cols">
+  <div>
+    <h4>Haixuan DiffBench v0.1</h4>
+    <p data-i="f_about"></p>
+    <p data-i="f_np"></p>
+    <p class="hash" id="fhash"></p>
+  </div>
+  <div>
+    <h4 data-i="f_lic"></h4>
+    <p data-i="f_lic_p"></p>
+    <p><a href="https://github.com/haixuan-ai/diffbench/blob/main/TRADEMARKS.md">TRADEMARKS</a> · <a href="https://github.com/haixuan-ai/diffbench/blob/main/GOVERNANCE.md">GOVERNANCE</a></p>
+  </div>
+  <div>
+    <h4 data-i="f_contact"></h4>
+    <p>haiping-liang@qq.com</p>
+    <p><a href="https://github.com/haixuan-ai/diffbench/issues">GitHub Issues</a></p>
+    <p>© 2026 杭州海轩云智科技有限公司 (Haixuan)</p>
+  </div>
+</div></div></footer>
+
+<script>
+const T={
+zh:{nav_overview:"总览",nav_scenarios:"场景明细",nav_conv:"收敛阶",nav_entrants:"参与评测引擎",nav_verify:"自己验证",nav_limits:"局限",nav_about:"下载与引用",
+eyebrow:"开放精度基准 · 刚体物理引擎 · v0.1",
+title:"以独立解析真值为标尺，逐项度量可微物理引擎的精度",
+lead:"10 个带闭式解或高精度数值解的场景；评分代码完全公开；引擎只返回状态轨迹；结果包带签名并可离线复算。我们不设综合分，也不排名——每个格子都是该指标相对真值的原始误差。",
+cta_repo:"GitHub 仓库 →",cta_results:"查看结果",cta_verify:"如何自己复现",
+f_scen:"场景",f_eng:"参与评测入口",f_spec:"规格哈希",f_date:"结果日期",f_host:"运行环境",f_release:"发布日期",
+f_host_v:"CPU · 4 核",
+disc_h:"阅读前请先知道：利益冲突与适用范围",
+disc:["<b>我们既是出题人，也是参与者。</b>AETHOS-Nexus（海轩全自研可微物理引擎，闭源）由我们配置并经托管 API 参与评测；其余引擎为我们运行的<b>未调参默认配置</b>，尚未经维护方复核。","Nexus 在首次接触基准后修改过引擎（见 NEXUS_DISCLOSURE）；容差由我们设定，严格容差在无接触场景里实际检验的是积分阶数。","本页没有综合分、没有排名。通过数只是该容差下的计数，换一组容差会改变它。仅 CPU，场景窄（单体/简单堆叠），不覆盖 GPU 吞吐、梯度、接触丰富的操作等。"],
+ov_h:"总览：按公开容差是否通过（dt = 1/240 s）",
+ov_sub:"✓ 表示该场景所有指标都在公开容差内；✗ 表示至少一项超出。引擎按字母顺序排列，并非排名。点击任一格子查看原始误差。",
+lg_ok:"全部指标在容差内",lg_bad:"至少一项超出容差",lg_org:"海轩科技入口（Nexus）",
+ov_note:"许多 ✗ 来自严格的 1 mm / 2% 容差：例如一阶积分器的自由落体位置误差约 2.0e-2 m，与步长成正比。这是相对闭式真值的精度，不等于引擎“不能用”。",
+sc_h:"场景明细：原始误差与容差",
+sc_sub:"每个数值都是该引擎在该场景下相对真值的原始误差（越小越好）。右侧细条是对数刻度：竖线是公开容差，条在竖线左侧即在容差内。",
+col_eng:"引擎",col_tol:"公开容差",col_sps:"步/秒（仅供参考）",tol_row:"公开容差",
+dt_l:"步长 dt：",
+conv_note:"仅 free_fall 与 pendulum_hinge 提供 dt 扫描(1/60、1/240、1/1000)。",
+na:"无数据",err:"运行失败",
+cv_h:"收敛阶",cv_sub:"对有 dt 扫描的场景，拟合误差随步长缩放的阶数（1 ≈ 一阶，2 ≈ 二阶）。负值或接近 0 表示误差基本不随步长下降，需结合原始数据解读。",
+cv_cols:["引擎","场景","指标","拟合阶数"],
+en_h:"参与评测引擎与结果包",en_sub:"每个引擎的版本、对应结果包与 SHA-256。结果包追加式保存；修复前的旧版本保留在 history/。",
+en_cols:["引擎","版本 / 配置","结果包","SHA-256"],
+org:"海轩科技",
+hid:"隐藏集：已有一个演示包（{b}；MuJoCo、Nexus PGS、Nexus DiffRigid；使用已知演示 seed，承诺哈希 {c}…），<b>不是</b>正式承诺-揭示结果，不应称为“隐藏集结果”。正式窗口（先公布 seed 哈希、≥14 天后揭示）尚未进行。",
+vf_h:"自己验证，不必信任我们",vf_sub:"评分器、规格与适配器全部在公开仓库。除 Nexus 外的引擎都可在本地跑；Nexus 通过托管 API 复现，并可离线验证 Ed25519 签名。",
+vf1:"获取仓库并安装要测的引擎",vf2:"核对规格哈希（应与结果包一致）",vf3:"运行并保留原始轨迹",vf4:"用原始轨迹重新计算每个指标",
+api_h:"Nexus 托管 API",api_p:"引擎只返回状态轨迹（位置/姿态/速度/角速度）和签名证明；评分在你本地完成。",
+api_info:"公钥与引擎构建号：",api_key:"当前签名密钥：",
+api_lim:"限制：每次 ≤ 12 个刚体、≤ 5 s、dt ≥ 0.5 ms；设计限流为每 IP 每分钟 6 次。",
+api_sla:"服务为尽力而为，目前没有可用性承诺。签名只证明响应来自运营方服务，不证明引擎未被修改（见局限 2）。",
+api_keys:"签名公钥历史",api_prod:"生产复跑记录（28/28 逐位一致）",
+lm_h:"局限：引用任何数字之前请先读",lm_sub:"这些是我们已知的、会影响结论的问题。完整版见仓库 docs/LIMITATIONS.md。",
+lim:[["出题方也是参与者","Nexus 入口由我们配置；其他引擎为我们运行的默认配置，尚未经维护方复核。"],["Nexus 闭源","结果可通过托管 API 复现，但无法在代码层审计；签名不能证明引擎未被修改。"],["基准暴露后改过引擎","修改清单见 NEXUS_DISCLOSURE.md。"],["隐藏集尚非正式","演示包使用已知 seed。"],["范围窄","10 个单体/简单堆叠场景，仅盒体与球体，无恢复系数、滚动/扭转摩擦、复杂关节链、软体、机器人。"],["容差由我们设定","换一组容差，通过数会变；原始数值始终公开，可自行套用。"],["“默认配置”是判断","适配器选择（如等效 μ 对齐）可能影响结果。"],["仅 CPU 赛道","为 GPU 设计的引擎（MJX、MuJoCo-Warp、Newton）在 CPU 上运行，不是其设计工况。"],["速度数字不可横向比较","单环境、含绑定开销，部分运行与其他引擎并行进行。Nexus 在我们的单环境 CPU 测量中慢于 MuJoCo（0.04–0.94×）。"],["托管 API 无保障","限流在生产环境未观测到生效；无可用性承诺。"],["无综合分","任何基于本表的排名均不代表维护方观点。"]],
+ab_h:"下载、引用与许可",dl_h:"下载",dl_report:"逐指标原始数值报告",dl_lb:"榜单元数据",dl_data:"本页使用的汇总数据",dl_hist:"历史与被取代的结果包（追加式保存）",
+cite_h:"引用",cite_p:"使用本基准的结果或代码时请署名 Haixuan DiffBench。",
+f_about:"Haixuan DiffBench 是杭州海轩云智科技有限公司发布的开放基准。仓库不含任何 Nexus 引擎源码。",
+f_np:"MuJoCo、MJX、MuJoCo-Warp、Newton、Warp、Brax、Drake 等名称归其权利人所有；本基准与其无隶属或背书关系。",
+f_lic:"许可",f_lic_p:"代码 Apache-2.0；规格、文档、数据与结果包 CC-BY-4.0（需署名）。",f_contact:"联系",
+cell_t:"{e} · {s}：{p}"},
+en:{nav_overview:"Overview",nav_scenarios:"Scenarios",nav_conv:"Convergence",nav_entrants:"Entrants",nav_verify:"Verify",nav_limits:"Limitations",nav_about:"Downloads",
+eyebrow:"Open accuracy benchmark · rigid-body physics · v0.1",
+title:"Measuring differentiable physics engines against independent analytic truth, metric by metric",
+lead:"Ten scenarios with closed-form or high-precision truth; a fully public scorer; engines return state trajectories only; signed result bundles that can be re-scored offline. No composite score and no ranking — every cell is the raw error of one metric against the truth.",
+cta_repo:"GitHub repository →",cta_results:"See results",cta_verify:"Reproduce it yourself",
+f_scen:"Scenarios",f_eng:"Entrants",f_spec:"Spec hash",f_date:"Results dated",f_host:"Run environment",f_release:"Release date",
+f_host_v:"CPU · 4 cores",
+disc_h:"Read first: conflict of interest and scope",
+disc:["<b>We are both the organizer and a participant.</b> AETHOS-Nexus (Haixuan's fully in-house differentiable physics engine, closed source) is configured by us and evaluated via a hosted API; the other engines are <b>untuned default configurations</b> run by us and not yet reviewed by their maintainers.","Nexus was modified after it first saw the benchmark (see NEXUS_DISCLOSURE); tolerances are our choice, and on no-contact scenarios strict tolerances effectively test integrator order.","There is no composite score and no ranking here. Pass counts are only counts under these tolerances. CPU only, narrow scope (single bodies and simple stacks); GPU throughput, gradients and contact-rich manipulation are not covered."],
+ov_h:"Overview: pass / fail against public tolerances (dt = 1/240 s)",
+ov_sub:"✓ means every metric of the scenario is within its public tolerance; ✗ means at least one is outside. Engines are listed alphabetically — this is not a ranking. Click a cell for the raw errors.",
+lg_ok:"all metrics within tolerance",lg_bad:"at least one metric outside",lg_org:"Haixuan entry (Nexus)",
+ov_note:"Many ✗ come from the strict 1 mm / 2 % tolerances: e.g. a first-order integrator's free-fall position error is ~2.0e-2 m, proportional to dt. This measures accuracy against closed-form truth; it does not mean an engine is unusable.",
+sc_h:"Scenario detail: raw error vs tolerance",
+sc_sub:"Every number is that engine's raw error against truth in that scenario (smaller is better). The thin bar is log-scaled: the vertical line is the public tolerance; a bar ending left of it is within tolerance.",
+col_eng:"Engine",col_tol:"Public tolerance",col_sps:"steps/s (informational)",tol_row:"public tolerance",
+dt_l:"Step size dt:",
+conv_note:"Only free_fall and pendulum_hinge have a dt sweep (1/60, 1/240, 1/1000).",
+na:"no data",err:"run failed",
+cv_h:"Convergence order",cv_sub:"For scenarios with a dt sweep: fitted order of error vs step size (1 ≈ first order, 2 ≈ second order). Negative or near-zero means error barely falls with dt; read it together with the raw data.",
+cv_cols:["Engine","Scenario","Metric","Fitted order"],
+en_h:"Entrants and result bundles",en_sub:"Each engine's version, its bundle and SHA-256. Bundles are append-only; superseded pre-fix versions are kept in history/.",
+en_cols:["Engine","Version / configuration","Bundle","SHA-256"],
+org:"Haixuan",
+hid:"Hidden set: there is one demo bundle ({b}; MuJoCo, Nexus PGS, Nexus DiffRigid; run with a known demo seed, commitment {c}…). It is <b>not</b> a formal commit–reveal result and must not be called a “hidden-set result”. A formal window (publish seed hash first, reveal after ≥14 days) has not yet been run.",
+vf_h:"Verify it yourself — you don't have to trust us",vf_sub:"The scorer, spec and adapters are all in the public repository. Every engine except Nexus runs locally; Nexus is reproduced through the hosted API with offline-verifiable Ed25519 signatures.",
+vf1:"Clone the repo and install the engines you want",vf2:"Check the spec hash (must equal the bundle's)",vf3:"Run and keep raw trajectories",vf4:"Re-compute every metric from the raw trajectories",
+api_h:"Nexus hosted API",api_p:"The engine returns only state trajectories (position / orientation / velocity / angular velocity) and a signed attestation; scoring happens on your machine.",
+api_info:"Public key and engine build:",api_key:"Current signing key:",
+api_lim:"Limits: ≤ 12 bodies, ≤ 5 s, dt ≥ 0.5 ms per request; the intended rate limit is 6 requests/min/IP.",
+api_sla:"Best effort; there is currently no availability commitment. A signature proves a response came from the operator's service, not that the engine is unmodified (limitation 2).",
+api_keys:"Signing-key history",api_prod:"Production re-run record (28/28 identical)",
+lm_h:"Limitations: read before citing any number",lm_sub:"These are the known problems that affect conclusions. Full list: docs/LIMITATIONS.md in the repository.",
+lim:[["Organizer is an entrant","Nexus entries are configured by us; the other engines are defaults run by us and not yet maintainer-reviewed."],["Nexus is closed source","Results are reproducible via the hosted API but cannot be audited at code level; the signature does not prove the engine is unmodified."],["Engine changed after benchmark exposure","Listed in NEXUS_DISCLOSURE.md."],["Hidden set is not yet formal","The demo bundle used a known seed."],["Narrow scope","10 single-body / simple-stack scenarios, boxes and spheres only; no restitution, rolling/torsional friction, complex joint chains, soft bodies or robots."],["Tolerances are our choice","A different tolerance set changes pass counts; raw values are always published so you can apply your own."],["“Default configuration” is a judgement","Adapter choices (e.g. effective-μ alignment) can matter."],["CPU track only","GPU-designed engines (MJX, MuJoCo-Warp, Newton) ran on CPU, which is not their intended regime."],["Speed numbers are not comparable","Single environment, include binding overhead, some runs concurrent with other engines. Nexus was 0.04–0.94× of MuJoCo in our single-environment CPU measurement."],["Hosted API has no guarantees","The rate limit was not observed to be enforced in production; no availability commitment."],["No composite score","Any ranking built from this table is not endorsed by the maintainers."]],
+ab_h:"Downloads, citation and license",dl_h:"Downloads",dl_report:"per-metric raw-value report",dl_lb:"leaderboard metadata",dl_data:"aggregated data used by this page",dl_hist:"history and superseded bundles (append-only)",
+cite_h:"Cite",cite_p:"Please credit Haixuan DiffBench when using results or code from this benchmark.",
+f_about:"Haixuan DiffBench is an open benchmark released by Hangzhou Haixuan Yunzhi Technology Co., Ltd. The repository contains no Nexus engine source code.",
+f_np:"MuJoCo, MJX, MuJoCo-Warp, Newton, Warp, Brax, Drake and other names belong to their owners; this benchmark is not affiliated with or endorsed by them.",
+f_lic:"License",f_lic_p:"Code: Apache-2.0. Spec text, docs, data and result bundles: CC-BY-4.0 (attribution required).",f_contact:"Contact",
+cell_t:"{e} · {s}: {p}"}
+};
+let L=(localStorage.getItem("dbLang")||((navigator.language||"").toLowerCase().startsWith("zh")?"zh":"en"));
+let D=null,curSc=null,curDt="240";
+const $=s=>document.querySelector(s);
+const t=k=>T[L][k];
+const fmt=v=>v===null||v===undefined?"n/a":(v===0?"0":(Math.abs(v)<0.01||Math.abs(v)>=1000?v.toExponential(2):Number(v.toPrecision(3)).toString()));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const scTitle=s=>L==="zh"?s.title_zh:s.title_en;
+const mLabel=m=>(D.metrics[m]?D.metrics[m][L]:m);
+const mUnit=m=>D.metrics[m]&&D.metrics[m].unit?D.metrics[m].unit:"";
+function res(e,s,dt){return(((D.results[e]||{})[s])||{})[dt]}
+function scPass(r){if(!r||!r.pass)return null;const v=Object.values(r.pass);return v.every(x=>x===true)}
+function render(){
+  document.documentElement.lang=L==="zh"?"zh-CN":"en";
+  document.querySelectorAll("[data-i]").forEach(el=>{const k=el.getAttribute("data-i");if(T[L][k]!==undefined)el.innerHTML=T[L][k]});
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
+  $("#disclosure").innerHTML="<h3>"+t("disc_h")+"</h3><ul>"+t("disc").map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+  $("#limlist").innerHTML=t("lim").map((x,i)=>"<li><b>"+(i+1)+". "+x[0]+".</b> "+x[1]+"</li>").join("");
+  if(!D)return;
+  const nE=new Set(D.engines.map(e=>e.id)).size;
+  $("#facts").innerHTML=[
+    [t("f_scen"),D.scenarios.length,""],[t("f_eng"),nE,""],[t("f_release"),"2026-11-03",""],
+    [t("f_date"),D.date_utc.slice(0,10),""],[t("f_spec"),D.spec_sha256.slice(0,12),"…"],[t("f_host"),t("f_host_v"),""]
+  ].map(x=>'<div><div class="k">'+x[0]+'</div><div class="v">'+x[1]+(x[2]?'<small>'+x[2]+'</small>':'')+'</div></div>').join("");
+  $("#specsha").textContent=D.spec_sha256; $("#fhash").textContent="spec_sha256 "+D.spec_sha256;
+  renderMatrix();renderTabs();renderScenario();renderConv();renderEntrants();
+}
+function renderMatrix(){
+  let h="<thead><tr><th></th>"+D.scenarios.map(s=>'<th class="c" data-sc="'+s.id+'" title="'+esc(scTitle(s))+'"><span>'+esc(scTitle(s).replace(/[（(].*$/,""))+'</span></th>').join("")+'<th></th></tr></thead><tbody>';
+  const ids=[...new Set(D.engines.map(e=>e.id))];
+  for(const id of ids){
+    const e=D.engines.find(x=>x.id===id);let ok=0,tot=0;
+    const cells=D.scenarios.map(s=>{const r=res(id,s.id,"240");const p=scPass(r);tot++;if(p)ok++;
+      const cls=p===null?"na":p?"ok":"bad";const sym=p===null?"–":p?"✓":"✗";
+      return '<td><a class="cell '+cls+'" data-sc="'+s.id+'" data-en="'+id+'" title="'+esc(t("cell_t").replace("{e}",e.label).replace("{s}",scTitle(s)).replace("{p}",p===null?t("na"):p?"✓":"✗"))+'">'+sym+'</a></td>'}).join("");
+    h+='<tr><th>'+esc(e.label)+(e.organizer_entrant?'<span class="tag">'+t("org")+'</span>':"")+'<small>'+esc(e.version)+'</small></th>'+cells+'<td class="cnt">'+ok+'/'+tot+'</td></tr>';
+  }
+  $("#matrix").innerHTML=h+"</tbody>";
+  document.querySelectorAll("#matrix [data-sc]").forEach(el=>el.onclick=()=>{curSc=el.dataset.sc;if(!["free_fall","pendulum_hinge"].includes(curSc))curDt="240";renderTabs();renderScenario();$("#scenarios").scrollIntoView()});
+}
+function renderTabs(){
+  if(!curSc)curSc=D.scenarios[0].id;
+  $("#tabs").innerHTML=D.scenarios.map(s=>'<button class="tab'+(s.id===curSc?" on":"")+'" data-sc="'+s.id+'">'+esc(scTitle(s).replace(/[（(].*$/,""))+'</button>').join("");
+  document.querySelectorAll("#tabs .tab").forEach(b=>b.onclick=()=>{curSc=b.dataset.sc;if(!["free_fall","pendulum_hinge"].includes(curSc))curDt="240";renderTabs();renderScenario()});
+}
+function gauge(v,tol){
+  if(v===null||v===undefined)return"";
+  const ratio=tol>0?v/tol:0;const x=ratio>0?Math.max(0,Math.min(1,(Math.log10(ratio)+4)/6)):0;
+  return'<div class="gauge"><u class="'+(v<=tol?"ok":"bad")+'" style="width:'+(x*100).toFixed(1)+'%"></u><s></s></div>';
+}
+function renderScenario(){
+  const s=D.scenarios.find(x=>x.id===curSc);const mets=Object.keys(s.tol);
+  const sweep=["free_fall","pendulum_hinge"].includes(s.id);
+  const dtHtml=sweep?'<div class="dtsel">'+t("dt_l")+["60","240","1000"].map(d=>'<button class="'+(d===curDt?"on":"")+'" data-dt="'+d+'">1/'+d+'</button>').join("")+'</div>':'<div class="dtsel">dt = 1/240</div>';
+  let h='<div class="sc-h"><div><h3>'+esc(scTitle(s))+'</h3><code>'+s.id+'</code></div>'+dtHtml+'</div>';
+  h+='<div class="scroll"><table class="dt"><thead><tr><th>'+t("col_eng")+'</th>'+mets.map(m=>'<th>'+esc(mLabel(m))+'<small>'+(mUnit(m)?"("+mUnit(m)+")":"")+'</small></th>').join("")+'<th>'+t("col_sps")+'</th></tr></thead><tbody>';
+  h+='<tr class="tolrow"><td>'+t("tol_row")+'</td>'+mets.map(m=>'<td>≤ '+fmt(s.tol[m])+'</td>').join("")+'<td></td></tr>';
+  const ids=[...new Set(D.engines.map(e=>e.id))];
+  for(const id of ids){
+    const e=D.engines.find(x=>x.id===id);const r=res(id,s.id,sweep?curDt:"240");
+    h+='<tr><td><b>'+esc(e.label)+'</b>'+(e.organizer_entrant?'<span class="tag">'+t("org")+'</span>':"")+'</td>';
+    if(!r)h+='<td colspan="'+(mets.length+1)+'" style="text-align:left;color:var(--na)">'+t("na")+'</td>';
+    else if(r.error)h+='<td colspan="'+(mets.length+1)+'" style="text-align:left;color:var(--bad)">'+t("err")+'</td>';
+    else{
+      h+=mets.map(m=>{const v=r.metrics[m];const ok=r.pass[m];return'<td><span class="val '+(ok?"ok":"bad")+'">'+fmt(v)+'</span>'+gauge(v,s.tol[m])+'</td>'}).join("");
+      h+='<td class="sps">'+(r.steps_per_sec?Math.round(r.steps_per_sec).toLocaleString():"—")+'</td>';
+    }
+    h+='</tr>';
+  }
+  h+='</tbody></table></div>';
+  if(sweep)h+='<p class="note">'+t("conv_note")+'</p>';
+  $("#scpanel").innerHTML=h;
+  document.querySelectorAll("#scpanel [data-dt]").forEach(b=>b.onclick=()=>{curDt=b.dataset.dt;renderScenario()});
+}
+function renderConv(){
+  const rows=D.convergence.slice().sort((a,b)=>a.scenario.localeCompare(b.scenario)||a.engine.localeCompare(b.engine));
+  const lab=Object.fromEntries(D.engines.map(e=>[e.id,e.label]));const sct=Object.fromEntries(D.scenarios.map(s=>[s.id,scTitle(s)]));
+  $("#conv").innerHTML="<thead><tr>"+t("cv_cols").map(c=>"<th>"+c+"</th>").join("")+"</tr></thead><tbody>"+
+    rows.map(r=>"<tr><td>"+esc(lab[r.engine]||r.engine)+"</td><td>"+esc(sct[r.scenario]||r.scenario)+"</td><td class='m'>"+esc(r.metric)+"</td><td class='m'>"+(r.order==null?"—":r.order.toFixed(2))+"</td></tr>").join("")+"</tbody>";
+}
+function renderEntrants(){
+  $("#entr").innerHTML="<thead><tr>"+t("en_cols").map(c=>"<th>"+c+"</th>").join("")+"</tr></thead><tbody>"+
+    D.engines.map(e=>"<tr><td><b>"+esc(e.label)+"</b>"+(e.organizer_entrant?'<span class="tag">'+t("org")+"</span>":"")+"</td><td class='m'>"+esc(e.version)+"</td><td class='m'><a href='bundles/"+e.bundle+".json'>"+e.bundle+".json</a></td><td class='m'>"+e.sha256.slice(0,16)+"…</td></tr>").join("")+"</tbody>";
+  if(D.hidden)$("#hidden").innerHTML=t("hid").replace("{b}","<a href='bundles/"+D.hidden.bundle+".json'>"+D.hidden.bundle+"</a>").replace("{c}",D.hidden.commitment.slice(0,16));
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;localStorage.setItem("dbLang",L);render()});
+document.querySelectorAll("pre[data-copy]").forEach(p=>{const b=document.createElement("button");b.textContent="copy";b.onclick=()=>{navigator.clipboard.writeText(p.innerText.replace(/\ncopy$/,"").replace(/^copy\n?/,"")).then(()=>{b.textContent="✓";setTimeout(()=>b.textContent="copy",1200)})};p.appendChild(b)});
+render();
+fetch("data.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{D=d;render()}).catch(e=>{$("#matrix").innerHTML="<tbody><tr><td class='loading'>data.json: "+esc(e.message)+"</td></tr></tbody>"});
+</script>
+</body>
+</html>

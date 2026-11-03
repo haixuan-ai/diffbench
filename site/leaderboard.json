@@ -1,0 +1,124 @@
+[
+ {
+  "file": "04b12d9542b71f77.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:41:15.952466Z",
+  "engine_versions": {
+   "mjx": "mujoco-mjx 3.17.0, jax 0.10.2 (CPU)"
+  },
+  "signature": {
+   "sha256": "04b12d9542b71f77c0beaefc150be14d618a1cc2c68cc2dad41b3a0478c98a32"
+  }
+ },
+ {
+  "file": "121292568edb0c9a.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:42:08.512208Z",
+  "engine_versions": {
+   "mujoco_warp": "mujoco_warp 3.16.0, mujoco 3.17.0, warp 1.18.0 (CPU device)"
+  },
+  "signature": {
+   "sha256": "121292568edb0c9addfd88acf054a430b8ba1cee2e3c79e8291c25c7783e71c9"
+  }
+ },
+ {
+  "file": "5450c5078fed8275.json",
+  "track": "accuracy_hidden",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-10-24T09:58:47.972094Z",
+  "engine_versions": {
+   "mujoco": "mujoco 3.17.0",
+   "nexus_pgs": "nexus (local build, entrant=nexus_pgs)",
+   "nexus_diffrigid": "nexus (local build, entrant=nexus_diffrigid)"
+  },
+  "signature": {
+   "sha256": "5450c5078fed82751716ae7783e0885d97e2b927dc8ac7a3f888a6207a94059a"
+  }
+ },
+ {
+  "file": "68b2f0ee1892c987.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:48:38.075808Z",
+  "engine_versions": {
+   "nexus_pgs": "nexus-f2ca9e94428b90e2"
+  },
+  "signature": {
+   "sha256": "68b2f0ee1892c987c581fe28438c7f7dc341d732815e2f0b0e076dececbb95f4"
+  }
+ },
+ {
+  "file": "6db73bc89e8ed86f.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:46:22.425611Z",
+  "engine_versions": {
+   "drake": "drake 1.51.1 (point contact, discrete)"
+  },
+  "signature": {
+   "sha256": "6db73bc89e8ed86f8f81fa3d83b8eed4aa583e0707df2f8770b574d41884b8fc"
+  }
+ },
+ {
+  "file": "722f72444e42aad1.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:53:55.289779Z",
+  "engine_versions": {
+   "nexus_diffrigid": "nexus-f2ca9e94428b90e2"
+  },
+  "signature": {
+   "sha256": "722f72444e42aad194a6392800c1ab42443d306d8475d8cac27bc3f8a88fbbf8"
+  }
+ },
+ {
+  "file": "8507972e6e81e030.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:39:48.225004Z",
+  "engine_versions": {
+   "mujoco": "mujoco 3.17.0"
+  },
+  "signature": {
+   "sha256": "8507972e6e81e0309256fe02d47a52a1512632cf9e8850e24add2adad5c32594"
+  }
+ },
+ {
+  "file": "a4c22f043fe9f9e5.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:46:00.780785Z",
+  "engine_versions": {
+   "brax_generalized": "brax 0.14.2, jax 0.10.2 (CPU, generalized pipeline)"
+  },
+  "signature": {
+   "sha256": "a4c22f043fe9f9e597357d93e4f5520b735e26badb242ec26841ee50ee8c5ebf"
+  }
+ },
+ {
+  "file": "c275830f5a2a8b12.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:59:01.027825Z",
+  "engine_versions": {
+   "newton_mujoco": "newton 1.7.0, warp 1.18.0 (CPU)"
+  },
+  "signature": {
+   "sha256": "c275830f5a2a8b1228a383b2589abb02a1b6a5f57eee6937da4b85205912fba2"
+  }
+ },
+ {
+  "file": "f033d6b3728453c7.json",
+  "track": "accuracy",
+  "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+  "date_utc": "2026-11-02T09:58:08.804284Z",
+  "engine_versions": {
+   "newton_xpbd": "newton 1.7.0, warp 1.18.0 (CPU)"
+  },
+  "signature": {
+   "sha256": "f033d6b3728453c7775aae14e2cec5975a97c96391ddda2d311a8cea19836523"
+  }
+ }
+]

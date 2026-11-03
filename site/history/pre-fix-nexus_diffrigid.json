@@ -1,0 +1,375 @@
+{
+ "track": "accuracy",
+ "diffbench_version": "0.1.0",
+ "spec_version": "0.1.0",
+ "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+ "date_utc": "2026-10-23T16:47:32.969140Z",
+ "host": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.30GHz",
+  "cores": 4,
+  "os": "Linux-6.18.58-x86_64-with-glibc2.40",
+  "python": "3.11.14",
+  "gpu": "none (CPU track)"
+ },
+ "engine_versions": {
+  "nexus_diffrigid": "nexus (local build, entrant=nexus_diffrigid)"
+ },
+ "results": [
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "free_fall",
+   "dt": 0.016666666666666666,
+   "wall_s": 2.15,
+   "metrics": {
+    "pos_err_max_m": 0.02043749999999739,
+    "vel_err_max_mps": 2.1316282072803006e-14
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 137.99728745631907,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.016666666666666666,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "free_fall",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.44,
+   "metrics": {
+    "pos_err_max_m": 0.005088649109800253,
+    "vel_err_max_mps": 0.019896854575598866
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": false
+   },
+   "steps_per_sec": 232.25615522068935,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "free_fall",
+   "dt": 0.001,
+   "wall_s": 2.65,
+   "metrics": {
+    "pos_err_max_m": 0.0012139875002471212,
+    "vel_err_max_mps": 1.211250020613594
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": false
+   },
+   "steps_per_sec": 608.793851363279,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.001,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "projectile_spin",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.8,
+   "metrics": {
+    "pos_err_max_m": 0.005109374999983984,
+    "vel_err_max_mps": 3.8191672047105385e-14,
+    "angvel_err_max_rps": 0.0
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 961.9288289060023,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "torque_free_asym",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.1,
+   "metrics": {
+    "orient_err_deg_max": 0.8509072508189723,
+    "energy_drift_rel": 0.008211053218019368,
+    "angmom_drift_rel": 0.004713168058596233,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": true,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 351.4459790123224,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "coulomb_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.66,
+   "metrics": {
+    "stop_dist_rel_err": 0.0026362982779732573,
+    "residual_speed_mps": 0.0009788121324870156,
+    "z_err_max_m": 0.00017085400214580937
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 298.2992983797909,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "incline_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.93,
+   "metrics": {
+    "slope_pos_rel_err": 0.07707437604634565,
+    "z_err_max_m": 3.211086007211261e-05
+   },
+   "pass": {
+    "slope_pos_rel_err": false,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 248.79138905469603,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "box_rest",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.55,
+   "metrics": {
+    "z_err_max_m": 3.791482479809094e-06,
+    "lateral_drift_m": 1.1480285240960166e-16,
+    "speed_max_mps": 0.0002235916346134082
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 541.6309265481652,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "box_drop",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.76,
+   "metrics": {
+    "final_z_err_m": 9.289823082968274e-05,
+    "final_speed_mps": 0.016062139734770168,
+    "max_rebound_m": 0.24710779333592284
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": false,
+    "max_rebound_m": false
+   },
+   "steps_per_sec": 464.8217320777129,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "sphere_slide_to_roll",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.23,
+   "metrics": {
+    "final_v_rel_err": 1.554312234475219e-16,
+    "roll_resid_rel": 0.0,
+    "x_end_rel_err": 0.0001853279729436409
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 781.3027328478591,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "stack5",
+   "dt": 0.004166666666666667,
+   "wall_s": 16.15,
+   "metrics": {
+    "top_z_err_m": 4.3009721795768545,
+    "lateral_drift_m": 1.4447074381691931,
+    "speed_max_mps": 6.571117533951333
+   },
+   "pass": {
+    "top_z_err_m": false,
+    "lateral_drift_m": false,
+    "speed_max_mps": false
+   },
+   "steps_per_sec": 31.237785598751792,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "pendulum_hinge",
+   "dt": 0.016666666666666666,
+   "wall_s": 1.26,
+   "error": "NaN/Inf in states",
+   "steps_per_sec": 268.3473519729293,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.016666666666666666,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "pendulum_hinge",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.26,
+   "metrics": {
+    "com_pos_err_max_m": 0.0050978823304776814,
+    "energy_drift_rel": 0.0039103854119076015
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 530.2536617009074,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "pendulum_hinge",
+   "dt": 0.001,
+   "wall_s": 5.73,
+   "metrics": {
+    "com_pos_err_max_m": 0.006185366993338771,
+    "energy_drift_rel": 0.0034192158390678753
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 616.1578282411235,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact)",
+    "stiffness": 50000,
+    "damping": 20000,
+    "frictionVelEps": 0.01,
+    "substeps": 4,
+    "dt": 0.001,
+    "graphRebuildEveryFrames": 10
+   }
+  }
+ ],
+ "convergence": [
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "free_fall",
+   "metric": "pos_err_max_m",
+   "order": 1.0035753473648785
+  }
+ ],
+ "signature": {
+  "sha256": "eef06fff6817b6b6548b450abc67b0b196341ae2ab09105685a5c6e842d07172"
+ }
+}

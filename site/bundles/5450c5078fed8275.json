@@ -1,0 +1,885 @@
+{
+ "track": "accuracy_hidden",
+ "hidden_seed_commitment": "87e1a63bd36504571bac71676c316a263c2422dce187c2abfdc9b619104286ad",
+ "diffbench_version": "0.1.0",
+ "spec_version": "0.1.0",
+ "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+ "date_utc": "2026-10-24T09:58:47.972094Z",
+ "host": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.30GHz",
+  "cores": 4,
+  "os": "Linux-6.18.58-x86_64-with-glibc2.40",
+  "python": "3.11.14",
+  "gpu": "none (CPU track)"
+ },
+ "engine_versions": {
+  "mujoco": "mujoco 3.17.0",
+  "nexus_pgs": "nexus (local build, entrant=nexus_pgs)",
+  "nexus_diffrigid": "nexus (local build, entrant=nexus_diffrigid)"
+ },
+ "scenario_meta": {
+  "free_fall~h": {
+   "title": "\u81ea\u7531\u843d\u4f53\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "pos_err_max_m": 0.001,
+    "vel_err_max_mps": 0.01
+   }
+  },
+  "projectile_spin~h": {
+   "title": "\u629b\u5c04+\u5300\u901f\u81ea\u65cb\u7403\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "pos_err_max_m": 0.001,
+    "vel_err_max_mps": 0.01,
+    "angvel_err_max_rps": 0.001
+   }
+  },
+  "torque_free_asym~h": {
+   "title": "\u65e0\u529b\u77e9\u975e\u5bf9\u79f0\u521a\u4f53\uff08\u4e2d\u95f4\u8f74\u7ffb\u8f6c\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "orient_err_deg_max": 2.0,
+    "energy_drift_rel": 0.001,
+    "angmom_drift_rel": 0.001,
+    "com_drift_m": 1e-06
+   }
+  },
+  "coulomb_slide~h": {
+   "title": "\u5e93\u4ed1\u6ed1\u884c\u505c\u8ddd\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "stop_dist_rel_err": 0.02,
+    "residual_speed_mps": 0.01,
+    "z_err_max_m": 0.002
+   }
+  },
+  "incline_slide~h": {
+   "title": "\u659c\u9762\u6ed1\u52a8\uff08\u91cd\u529b\u5206\u89e3\uff0c\u03bc<tan\u03b8\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "slope_pos_rel_err": 0.02,
+    "z_err_max_m": 0.002
+   }
+  },
+  "box_rest~h": {
+   "title": "\u9759\u7f6e\u76d2\u4f53\uff08\u63a5\u89e6\u5e73\u8861\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "z_err_max_m": 0.001,
+    "lateral_drift_m": 0.001,
+    "speed_max_mps": 0.01
+   }
+  },
+  "box_drop~h": {
+   "title": "\u76d2\u4f53\u4e0b\u843d\uff08\u9759\u6b62\u9ad8\u5ea6\uff0c\u975e\u5f39\u6027\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "final_z_err_m": 0.002,
+    "final_speed_mps": 0.01,
+    "max_rebound_m": 0.02
+   }
+  },
+  "sphere_slide_to_roll~h": {
+   "title": "\u7403\u4f53\u6ed1\u52a8\u2192\u7eaf\u6eda\u52a8\uff08\u6469\u64e6\u529b\u77e9\u8026\u5408\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "final_v_rel_err": 0.03,
+    "roll_resid_rel": 0.03,
+    "x_end_rel_err": 0.03
+   }
+  },
+  "stack5~h": {
+   "title": "\u4e94\u5c42\u76d2\u4f53\u5806\u53e0\u9759\u7f6e\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "top_z_err_m": 0.005,
+    "lateral_drift_m": 0.005,
+    "speed_max_mps": 0.05
+   }
+  },
+  "pendulum_hinge~h": {
+   "title": "\u94f0\u94fe\u590d\u6446\uff08\u6c34\u5e73\u91ca\u653e\uff0c\u5927\u6446\u5e45\uff09\uff08\u9690\u85cf\u53d8\u4f53\uff09",
+   "tol": {
+    "com_pos_err_max_m": 0.005,
+    "energy_drift_rel": 0.01
+   }
+  }
+ },
+ "results": [
+  {
+   "engine": "mujoco",
+   "scenario": "free_fall~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.01,
+   "metrics": {
+    "pos_err_max_m": 0.02043749999999611,
+    "vel_err_max_mps": 2.1316282072803006e-14
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 407494.5023472357,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "projectile_spin~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.0,
+   "metrics": {
+    "pos_err_max_m": 0.020437500000006992,
+    "vel_err_max_mps": 1.021405182655144e-14,
+    "angvel_err_max_rps": 9.325873406851315e-15
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 434732.20695028605,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "torque_free_asym~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.0,
+   "metrics": {
+    "orient_err_deg_max": 3.9502591668420046,
+    "energy_drift_rel": 0.03759993496659481,
+    "angmom_drift_rel": 0.021298382421907246,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": false,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 412903.5797899641,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "coulomb_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.0,
+   "metrics": {
+    "stop_dist_rel_err": 0.010303935967401989,
+    "residual_speed_mps": 4.2775948767699515e-11,
+    "z_err_max_m": 0.0015384125612543237
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 175327.2223317295,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "incline_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.0,
+   "metrics": {
+    "slope_pos_rel_err": 0.003853947696005412,
+    "z_err_max_m": 0.0038290463692209342
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": false
+   },
+   "steps_per_sec": 241359.3369465588,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "box_rest~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.01,
+   "metrics": {
+    "z_err_max_m": 0.00030768258061401876,
+    "lateral_drift_m": 7.034309963027623e-19,
+    "speed_max_mps": 5.63245225442684e-13
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 192056.61803739308,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "box_drop~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.01,
+   "metrics": {
+    "final_z_err_m": 1.707247533147549e-05,
+    "final_speed_mps": 1.7753849330480962e-13,
+    "max_rebound_m": 0.0
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 204272.00860990753,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "sphere_slide_to_roll~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.0,
+   "metrics": {
+    "final_v_rel_err": 0.00037839732474850087,
+    "roll_resid_rel": 0.00020173627829097015,
+    "x_end_rel_err": 0.0010182937153321405
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 248642.82390177943,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "stack5~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.03,
+   "metrics": {
+    "top_z_err_m": 0.0015119673341230655,
+    "lateral_drift_m": 7.90258265787091e-16,
+    "speed_max_mps": 2.5241956748018907e-12
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 31290.52896931531,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "mujoco",
+   "scenario": "pendulum_hinge~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.01,
+   "metrics": {
+    "com_pos_err_max_m": 0.006141917017048301,
+    "energy_drift_rel": 0.006469787971886488
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 408789.4279395126,
+   "config": {
+    "integrator": "Euler(default)",
+    "cone": "pyramidal(default)",
+    "solref": "default"
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "free_fall~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.36,
+   "metrics": {
+    "pos_err_max_m": 9.769962616701378e-15,
+    "vel_err_max_mps": 3.730349362740526e-14
+   },
+   "pass": {
+    "pos_err_max_m": true,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 22406.04515098225,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "projectile_spin~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.34,
+   "metrics": {
+    "pos_err_max_m": 2.531308496145357e-14,
+    "vel_err_max_mps": 2.220446049250313e-14,
+    "angvel_err_max_rps": 0.0
+   },
+   "pass": {
+    "pos_err_max_m": true,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 24462.248431257096,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "torque_free_asym~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.36,
+   "metrics": {
+    "orient_err_deg_max": 0.017720196748363736,
+    "energy_drift_rel": 2.1098945899224507e-05,
+    "angmom_drift_rel": 5.6980847146410035e-05,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": true,
+    "energy_drift_rel": true,
+    "angmom_drift_rel": true,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 17736.718588077332,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "coulomb_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.36,
+   "metrics": {
+    "stop_dist_rel_err": 0.005348186550170557,
+    "residual_speed_mps": 9.207602565960825e-19,
+    "z_err_max_m": 4.976853104216028e-07
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 4616.743269658743,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "incline_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.42,
+   "metrics": {
+    "slope_pos_rel_err": 0.002091045163782752,
+    "z_err_max_m": 4.106471987452842e-07
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 4959.441685892759,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     4.673989337249748,
+     -8.624959343398418,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "box_rest~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.43,
+   "metrics": {
+    "z_err_max_m": 3.579482433513359e-07,
+    "lateral_drift_m": 2.590640412680092e-18,
+    "speed_max_mps": 2.221528451437463e-18
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 5553.978071506081,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "box_drop~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.39,
+   "metrics": {
+    "final_z_err_m": 5.502688081027163e-07,
+    "final_speed_mps": 4.610178604117306e-18,
+    "max_rebound_m": 0.00325937499999962
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 8658.214181274618,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "sphere_slide_to_roll~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.39,
+   "metrics": {
+    "final_v_rel_err": 3.6836558492854454e-15,
+    "roll_resid_rel": 1.2702261549260157e-16,
+    "x_end_rel_err": 0.00040125513872257877
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 9727.408034044613,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "stack5~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.45,
+   "metrics": {
+    "top_z_err_m": 0.00012171715171249708,
+    "lateral_drift_m": 2.883048872218162e-16,
+    "speed_max_mps": 1.3645343906101143e-07
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 4101.652554105028,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ]
+   }
+  },
+  {
+   "engine": "nexus_pgs",
+   "scenario": "pendulum_hinge~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.39,
+   "metrics": {
+    "com_pos_err_max_m": 0.003063315681578028,
+    "energy_drift_rel": 0.0032218403482374143
+   },
+   "pass": {
+    "com_pos_err_max_m": true,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 17408.917210080803,
+   "config": {
+    "solver": "NexusRigidWorld(PGS)",
+    "defaults": "DEFAULT_RIGID_CONFIG",
+    "dt": 0.004166666666666667,
+    "internal_substeps": 2,
+    "gravity_eng": [
+     0,
+     -9.81,
+     0
+    ],
+    "jointGyroMode": "all"
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "free_fall~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.6,
+   "metrics": {
+    "pos_err_max_m": 2.9753977059954195e-14,
+    "vel_err_max_mps": 1.474376176702208e-13
+   },
+   "pass": {
+    "pos_err_max_m": true,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 1021.4654147132572,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 6
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "projectile_spin~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.48,
+   "metrics": {
+    "pos_err_max_m": 7.105427357601002e-14,
+    "vel_err_max_mps": 4.618527782440651e-14,
+    "angvel_err_max_rps": 0.0
+   },
+   "pass": {
+    "pos_err_max_m": true,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 1723.7931352567161,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 8
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "torque_free_asym~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.48,
+   "metrics": {
+    "orient_err_deg_max": 0.2820738578459646,
+    "energy_drift_rel": 0.0026171326102653963,
+    "angmom_drift_rel": 0.0014983541270232271,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": true,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 424.6272563115521,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 14
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "coulomb_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.4,
+   "metrics": {
+    "stop_dist_rel_err": 0.0008774688664769431,
+    "residual_speed_mps": 0.00033242215851412194,
+    "z_err_max_m": 9.66783849321029e-06
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 230.23963908601158,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 15
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "incline_slide~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.23,
+   "metrics": {
+    "slope_pos_rel_err": 0.001084673647466533,
+    "z_err_max_m": 1.6912821097170294e-05
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 289.0059882281597,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 10
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "box_rest~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.49,
+   "metrics": {
+    "z_err_max_m": 0.00012672996141838144,
+    "lateral_drift_m": 3.638814405136215e-08,
+    "speed_max_mps": 0.0002965192585137865
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 225.02832375254002,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 17
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "box_drop~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 3.57,
+   "metrics": {
+    "final_z_err_m": 1.91841517879765e-06,
+    "final_speed_mps": 0.00030839966712378,
+    "max_rebound_m": 0.003602922453083454
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 148.69874186384845,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 21
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "sphere_slide_to_roll~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 0.8,
+   "metrics": {
+    "final_v_rel_err": 0.0002207599051558996,
+    "roll_resid_rel": 0.0007726596680467918,
+    "x_end_rel_err": 6.801986143307735e-06
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 509.06735716676127,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 17
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "stack5~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 131.77,
+   "metrics": {
+    "top_z_err_m": 0.0008038478963758866,
+    "lateral_drift_m": 4.4204817410831776e-05,
+    "speed_max_mps": 0.0035915292162048344
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 3.6541492258895083,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 21
+   }
+  },
+  {
+   "engine": "nexus_diffrigid",
+   "scenario": "pendulum_hinge~h",
+   "dt": 0.004166666666666667,
+   "wall_s": 17.72,
+   "metrics": {
+    "com_pos_err_max_m": 0.0004745561336985419,
+    "energy_drift_rel": 0.00024346631404501432
+   },
+   "pass": {
+    "com_pos_err_max_m": true,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 50.564084158430234,
+   "config": {
+    "solver": "DiffRigidSim(penalty contact, critically-damped-ratio linear normal damping)",
+    "stiffness": 50000,
+    "damping_ratio": 0.7,
+    "hinge_kPos": 200000,
+    "freeFlightTrapezoid": true,
+    "frictionVelEps": 0.001,
+    "substeps": "auto(stability-bounded)",
+    "dt": 0.004166666666666667,
+    "graphRebuildEveryFrames": 10,
+    "substeps_used": 75
+   }
+  }
+ ],
+ "convergence": [],
+ "signature": {
+  "sha256": "5450c5078fed82751716ae7783e0885d97e2b927dc8ac7a3f888a6207a94059a"
+ }
+}

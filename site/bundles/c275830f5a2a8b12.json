@@ -1,0 +1,399 @@
+{
+ "track": "accuracy",
+ "hidden_seed_commitment": null,
+ "diffbench_version": "0.1.0",
+ "spec_version": "0.1.0",
+ "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+ "date_utc": "2026-11-02T09:59:01.027825Z",
+ "host": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.30GHz",
+  "cores": 4,
+  "os": "Linux-6.18.60-x86_64-with-glibc2.40",
+  "python": "3.11.14",
+  "gpu": "none (CPU track)"
+ },
+ "engine_versions": {
+  "newton_mujoco": "newton 1.7.0, warp 1.18.0 (CPU)"
+ },
+ "scenario_meta": {
+  "free_fall": {
+   "title": "\u81ea\u7531\u843d\u4f53",
+   "tol": {
+    "pos_err_max_m": 0.001,
+    "vel_err_max_mps": 0.01
+   }
+  },
+  "projectile_spin": {
+   "title": "\u629b\u5c04+\u5300\u901f\u81ea\u65cb\u7403",
+   "tol": {
+    "pos_err_max_m": 0.001,
+    "vel_err_max_mps": 0.01,
+    "angvel_err_max_rps": 0.001
+   }
+  },
+  "torque_free_asym": {
+   "title": "\u65e0\u529b\u77e9\u975e\u5bf9\u79f0\u521a\u4f53\uff08\u4e2d\u95f4\u8f74\u7ffb\u8f6c\uff09",
+   "tol": {
+    "orient_err_deg_max": 2.0,
+    "energy_drift_rel": 0.001,
+    "angmom_drift_rel": 0.001,
+    "com_drift_m": 1e-06
+   }
+  },
+  "coulomb_slide": {
+   "title": "\u5e93\u4ed1\u6ed1\u884c\u505c\u8ddd",
+   "tol": {
+    "stop_dist_rel_err": 0.02,
+    "residual_speed_mps": 0.01,
+    "z_err_max_m": 0.002
+   }
+  },
+  "incline_slide": {
+   "title": "\u659c\u9762\u6ed1\u52a8\uff08\u91cd\u529b\u5206\u89e3\uff0c\u03bc<tan\u03b8\uff09",
+   "tol": {
+    "slope_pos_rel_err": 0.02,
+    "z_err_max_m": 0.002
+   }
+  },
+  "box_rest": {
+   "title": "\u9759\u7f6e\u76d2\u4f53\uff08\u63a5\u89e6\u5e73\u8861\uff09",
+   "tol": {
+    "z_err_max_m": 0.001,
+    "lateral_drift_m": 0.001,
+    "speed_max_mps": 0.01
+   }
+  },
+  "box_drop": {
+   "title": "\u76d2\u4f53\u4e0b\u843d\uff08\u9759\u6b62\u9ad8\u5ea6\uff0c\u975e\u5f39\u6027\uff09",
+   "tol": {
+    "final_z_err_m": 0.002,
+    "final_speed_mps": 0.01,
+    "max_rebound_m": 0.02
+   }
+  },
+  "sphere_slide_to_roll": {
+   "title": "\u7403\u4f53\u6ed1\u52a8\u2192\u7eaf\u6eda\u52a8\uff08\u6469\u64e6\u529b\u77e9\u8026\u5408\uff09",
+   "tol": {
+    "final_v_rel_err": 0.03,
+    "roll_resid_rel": 0.03,
+    "x_end_rel_err": 0.03
+   }
+  },
+  "stack5": {
+   "title": "\u4e94\u5c42\u76d2\u4f53\u5806\u53e0\u9759\u7f6e",
+   "tol": {
+    "top_z_err_m": 0.005,
+    "lateral_drift_m": 0.005,
+    "speed_max_mps": 0.05
+   }
+  },
+  "pendulum_hinge": {
+   "title": "\u94f0\u94fe\u590d\u6446\uff08\u6c34\u5e73\u91ca\u653e\uff0c\u5927\u6446\u5e45\uff09",
+   "tol": {
+    "com_pos_err_max_m": 0.005,
+    "energy_drift_rel": 0.01
+   }
+  }
+ },
+ "results": [
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.016666666666666666,
+   "wall_s": 5.21,
+   "metrics": {
+    "pos_err_max_m": 0.08174926161766027,
+    "vel_err_max_mps": 4.34875488330988e-06
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 55.63953668740004,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.09,
+   "metrics": {
+    "pos_err_max_m": 0.02043635517358755,
+    "vel_err_max_mps": 1.281738281200262e-05
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 228.68369505869293,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.001,
+   "wall_s": 4.65,
+   "metrics": {
+    "pos_err_max_m": 0.004900262951850642,
+    "vel_err_max_mps": 6.050109863231512e-05
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 217.21399412174466,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "projectile_spin",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.2,
+   "metrics": {
+    "pos_err_max_m": 0.020433158874510582,
+    "vel_err_max_mps": 7.20977783252863e-06,
+    "angvel_err_max_rps": 0.000408172607421875
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 207.64650053679208,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "torque_free_asym",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.27,
+   "metrics": {
+    "orient_err_deg_max": 3.3353407613348423,
+    "energy_drift_rel": 0.031633155702508624,
+    "angmom_drift_rel": 0.0182261623029605,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": false,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 216.00349529301235,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "coulomb_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.59,
+   "metrics": {
+    "stop_dist_rel_err": 0.009728932604193623,
+    "residual_speed_mps": 6.306939378417784e-07,
+    "z_err_max_m": 0.005361185967922205
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": false
+   },
+   "steps_per_sec": 155.87603431444677,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "incline_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.63,
+   "metrics": {
+    "slope_pos_rel_err": 0.007310858446002711,
+    "z_err_max_m": 0.0005512773990631048
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 151.5909911292388,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "box_rest",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.78,
+   "metrics": {
+    "z_err_max_m": 0.0003092423081398066,
+    "lateral_drift_m": 9.795272370993757e-10,
+    "speed_max_mps": 6.310521032937478e-07
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 175.4895903930376,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "box_drop",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.91,
+   "metrics": {
+    "final_z_err_m": 1.7097592353826352e-05,
+    "final_speed_mps": 6.306896702398221e-07,
+    "max_rebound_m": 0.0016658022999763433
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 167.914518572036,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "sphere_slide_to_roll",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.57,
+   "metrics": {
+    "final_v_rel_err": 0.00042763948440553977,
+    "roll_resid_rel": 0.00034037828445434567,
+    "x_end_rel_err": 0.0010054358228843935
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 156.80356394855679,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "stack5",
+   "dt": 0.004166666666666667,
+   "wall_s": 4.38,
+   "metrics": {
+    "top_z_err_m": 0.0030084490776062234,
+    "lateral_drift_m": 2.8708150523470977e-08,
+    "speed_max_mps": 0.004945180846049521
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 111.07303915564633,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.016666666666666666,
+   "wall_s": 1.04,
+   "metrics": {
+    "com_pos_err_max_m": 0.022582005724106298,
+    "energy_drift_rel": 0.028575629092530384
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": false
+   },
+   "steps_per_sec": 182.89390985146224,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.004166666666666667,
+   "wall_s": 3.08,
+   "metrics": {
+    "com_pos_err_max_m": 0.0056446885056833235,
+    "energy_drift_rel": 0.0070401951357764204
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 237.68199595542498,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.001,
+   "wall_s": 13.08,
+   "metrics": {
+    "com_pos_err_max_m": 0.0013610433654845612,
+    "energy_drift_rel": 0.0016828099153525285
+   },
+   "pass": {
+    "com_pos_err_max_m": true,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 230.7328325049433,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  }
+ ],
+ "convergence": [
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "metric": "pos_err_max_m",
+   "order": 1.0003416852894618
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "metric": "com_pos_err_max_m",
+   "order": 0.9983892137034872
+  }
+ ],
+ "signature": {
+  "sha256": "c275830f5a2a8b1228a383b2589abb02a1b6a5f57eee6937da4b85205912fba2"
+ }
+}

@@ -1,0 +1,318 @@
+{
+ "track": "accuracy",
+ "diffbench_version": "0.1.0",
+ "spec_version": "0.1.0",
+ "spec_sha256": "3d6ecebe82b2ba7953652e762cbdaf9ca1c4147e43700b2fc42c49fa54575142",
+ "date_utc": "2026-10-23T16:48:11.805319Z",
+ "host": {
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8581C CPU @ 2.30GHz",
+  "cores": 4,
+  "os": "Linux-6.18.58-x86_64-with-glibc2.40",
+  "python": "3.11.14",
+  "gpu": "none (CPU track)"
+ },
+ "engine_versions": {
+  "newton_mujoco": "newton 1.7.0, warp 1.18.0 (CPU)"
+ },
+ "results": [
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.016666666666666666,
+   "wall_s": 9.28,
+   "metrics": {
+    "pos_err_max_m": 0.08174926161766027,
+    "vel_err_max_mps": 4.34875488330988e-06
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 33.209350981600565,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.08,
+   "metrics": {
+    "pos_err_max_m": 0.02043635517358755,
+    "vel_err_max_mps": 1.281738281200262e-05
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 121.63438795184356,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "dt": 0.001,
+   "wall_s": 9.54,
+   "metrics": {
+    "pos_err_max_m": 0.004900262951850642,
+    "vel_err_max_mps": 6.050109863231512e-05
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true
+   },
+   "steps_per_sec": 106.11857593709932,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "projectile_spin",
+   "dt": 0.004166666666666667,
+   "wall_s": 2.45,
+   "metrics": {
+    "pos_err_max_m": 0.020433158874510582,
+    "vel_err_max_mps": 7.20977783252863e-06,
+    "angvel_err_max_rps": 0.000408172607421875
+   },
+   "pass": {
+    "pos_err_max_m": false,
+    "vel_err_max_mps": true,
+    "angvel_err_max_rps": true
+   },
+   "steps_per_sec": 101.24972694081454,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "torque_free_asym",
+   "dt": 0.004166666666666667,
+   "wall_s": 4.57,
+   "metrics": {
+    "orient_err_deg_max": 3.3353407613348423,
+    "energy_drift_rel": 0.031633155702508624,
+    "angmom_drift_rel": 0.0182261623029605,
+    "com_drift_m": 0.0
+   },
+   "pass": {
+    "orient_err_deg_max": false,
+    "energy_drift_rel": false,
+    "angmom_drift_rel": false,
+    "com_drift_m": true
+   },
+   "steps_per_sec": 106.4330793120872,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "coulomb_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 3.47,
+   "metrics": {
+    "stop_dist_rel_err": 0.009728932604193623,
+    "residual_speed_mps": 6.306939378417784e-07,
+    "z_err_max_m": 0.005361185967922205
+   },
+   "pass": {
+    "stop_dist_rel_err": true,
+    "residual_speed_mps": true,
+    "z_err_max_m": false
+   },
+   "steps_per_sec": 70.89896152467387,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "incline_slide",
+   "dt": 0.004166666666666667,
+   "wall_s": 3.36,
+   "metrics": {
+    "slope_pos_rel_err": 0.007310858446002711,
+    "z_err_max_m": 0.0005512773990631048
+   },
+   "pass": {
+    "slope_pos_rel_err": true,
+    "z_err_max_m": true
+   },
+   "steps_per_sec": 73.90072036427921,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "box_rest",
+   "dt": 0.004166666666666667,
+   "wall_s": 5.95,
+   "metrics": {
+    "z_err_max_m": 0.0003092423081398066,
+    "lateral_drift_m": 9.795272370993757e-10,
+    "speed_max_mps": 6.310521032937478e-07
+   },
+   "pass": {
+    "z_err_max_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 82.50945968995816,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "box_drop",
+   "dt": 0.004166666666666667,
+   "wall_s": 3.27,
+   "metrics": {
+    "final_z_err_m": 1.7097592353826352e-05,
+    "final_speed_mps": 6.306896702398221e-07,
+    "max_rebound_m": 0.0016658022999763433
+   },
+   "pass": {
+    "final_z_err_m": true,
+    "final_speed_mps": true,
+    "max_rebound_m": true
+   },
+   "steps_per_sec": 150.95965771547745,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "sphere_slide_to_roll",
+   "dt": 0.004166666666666667,
+   "wall_s": 1.64,
+   "metrics": {
+    "final_v_rel_err": 0.00042763948440553977,
+    "roll_resid_rel": 0.00034037828445434567,
+    "x_end_rel_err": 0.0010054358228843935
+   },
+   "pass": {
+    "final_v_rel_err": true,
+    "roll_resid_rel": true,
+    "x_end_rel_err": true
+   },
+   "steps_per_sec": 154.60819703638177,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "stack5",
+   "dt": 0.004166666666666667,
+   "wall_s": 6.08,
+   "metrics": {
+    "top_z_err_m": 0.0030084490776062234,
+    "lateral_drift_m": 2.8708150523470977e-08,
+    "speed_max_mps": 0.004945180846049521
+   },
+   "pass": {
+    "top_z_err_m": true,
+    "lateral_drift_m": true,
+    "speed_max_mps": true
+   },
+   "steps_per_sec": 80.14306179043122,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.016666666666666666,
+   "wall_s": 0.97,
+   "metrics": {
+    "com_pos_err_max_m": 0.022582005724106298,
+    "energy_drift_rel": 0.028575629092530384
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": false
+   },
+   "steps_per_sec": 195.06623036404227,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.004166666666666667,
+   "wall_s": 5.38,
+   "metrics": {
+    "com_pos_err_max_m": 0.0056446885056833235,
+    "energy_drift_rel": 0.0070401951357764204
+   },
+   "pass": {
+    "com_pos_err_max_m": false,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 135.22244017911817,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "dt": 0.001,
+   "wall_s": 19.38,
+   "metrics": {
+    "com_pos_err_max_m": 0.0013610433654845612,
+    "energy_drift_rel": 0.0016828099153525285
+   },
+   "pass": {
+    "com_pos_err_max_m": true,
+    "energy_drift_rel": true
+   },
+   "steps_per_sec": 155.79548084415157,
+   "config": {
+    "solver": "mujoco",
+    "xpbd_iterations": null
+   }
+  }
+ ],
+ "convergence": [
+  {
+   "engine": "newton_mujoco",
+   "scenario": "free_fall",
+   "metric": "pos_err_max_m",
+   "order": 1.0003416852894618
+  },
+  {
+   "engine": "newton_mujoco",
+   "scenario": "pendulum_hinge",
+   "metric": "com_pos_err_max_m",
+   "order": 0.9983892137034872
+  }
+ ],
+ "signature": {
+  "sha256": "2b5436b716bdc9b74221fb3c142a14c6bbe0403c082c6f7865be4a170c765f9c"
+ }
+}
